@@ -1,0 +1,22 @@
+1.3 Compare Swing and AWT elements:
+Programming with AWT and Swing is quite similar (similar elements including container/components, and
+event-handling). However, there are some differences that you need to note:
+o Compare the top-level containers in Swing and AWT
+o Compare the class name of components in AWT and the corresponding class’s name in Swing
+o Compare the event-handling of Swing and AWT applications
+The resulting appearances of the applications developed using Swing and AWT might be different as well.
+Make comparisons.
+
+Trả lời: 
+Bộ chứa cấp cao (Container):
+AWT: Frame, Dialog. Thêm component trực tiếp.
+Swing: JFrame, JDialog (có chữ 'J'). Thêm component vào contentPane bên trong.
+Thành phần (Component):
+AWT: Button, Label,... (Heavyweight - dùng đồ họa HĐH).
+Swing: JButton, JLabel,... (Thường có 'J', Lightweight - Java vẽ, linh hoạt hơn). Nhiều component hơn AWT.
+Xử lý sự kiện:
+Cả hai: Dùng chung mô hình ủy quyền sự kiện (Listener, Event Object, Source). Cách viết code tương tự.
+Giao diện (Look and Feel):
+AWT: Luôn giống giao diện gốc của hệ điều hành.
+Swing: Linh hoạt, có thể chọn giao diện (giống HĐH, độc lập, tùy chỉnh - Pluggable Look and Feel).
+Điểm chính: Swing dùng tiền tố 'J', linh hoạt hơn về giao diện và thành phần (lightweight), còn AWT dùng thành phần gốc của HĐH (heavyweight). Xử lý sự kiện về cơ bản là giống nhau.
