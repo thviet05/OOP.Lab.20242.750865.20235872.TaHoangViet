@@ -1,0 +1,29 @@
+9. Xử lý ngoại lệ (Exception Handling):
+
+Em đã triển khai cơ chế xử lý lỗi bằng khối try-catch trong lớp CartController, đặc biệt trong các thao tác như xóa media hoặc đặt hàng.
+
+Trong lớp Cart, khi số lượng media vượt quá giới hạn cho phép (20), hệ thống sẽ phát sinh ngoại lệ LimitExceededException.
+
+Việc xử lý ngoại lệ giúp đảm bảo chương trình hoạt động ổn định, không bị gián đoạn và đồng thời cung cấp thông báo phù hợp cho người dùng khi có sự cố.
+
+10. PlayerException:
+
+Em đã thiết kế một lớp ngoại lệ riêng có tên PlayerException, kế thừa từ lớp Exception.
+
+Lỗi này được phát sinh trong phương thức play() của các lớp như DigitalVideoDisc và CompactDisc khi độ dài media không hợp lệ (≤ 0).
+
+Nhờ đó, chương trình chỉ cho phép phát các media hợp lệ, tránh lỗi logic và đảm bảo tính đúng đắn khi phát nội dung.
+
+12. equals() và compareTo():
+
+Trong lớp Media, em đã override phương thức equals() để so sánh hai đối tượng dựa trên tiêu đề (title) và chi phí (cost).
+
+Đồng thời, em cũng sử dụng compareTo() hoặc Comparator để thực hiện việc sắp xếp danh sách media theo tiêu chí: tiêu đề trước, chi phí sau.
+
+Điều này giúp tăng độ chính xác trong việc kiểm tra trùng lặp và hỗ trợ tốt hơn khi cần sắp xếp dữ liệu trong giỏ hàng.
+
+14. Sơ đồ phân cấp ngoại lệ:
+
+Em đã xây dựng sơ đồ phân cấp cho các ngoại lệ, trong đó PlayerException là lớp con của Exception.
+
+Do đó, đây là một ngoại lệ được kiểm tra (checked exception), bắt buộc lập trình viên phải xử lý rõ ràng thông qua try-catch hoặc khai báo throws, góp phần tăng độ an toàn cho chương trình.

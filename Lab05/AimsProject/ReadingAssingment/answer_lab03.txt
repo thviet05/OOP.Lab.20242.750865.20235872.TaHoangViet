@@ -1,0 +1,30 @@
+Suggestion 1 (Trang 11):
+Suggestion: Write a toString() method for the DigitalVideoDisc class. What should be the return type of this method?
+Trả lời câu hỏi: Kiểu trả về (return type) của phương thức toString() luôn luôn là String. Đây là quy tắc chuẩn của Java khi bạn override phương thức toString() từ lớp Object.
+
+Câu hỏi part 14: 
+
+Câu hỏi part 15: If the passing object is not an instance of Media, what happens?
+Trả lời: Nếu đối tượng truyền vào equals() không phải là instance của Media (hoặc Track tương ứng): Kiểm tra instanceof trong equals() sẽ trả về false, do đó phương thức equals() trả về false và đối tượng đó sẽ không được coi là tồn tại trong list.
+
+Câu hỏi part 17: 
+What class should implement the Comparable interface? 
+Lớp Media có thể implement Comparable<Media> để định nghĩa một thứ tự sắp xếp "tự nhiên" (natural ordering) cho tất cả các loại media.
+
+In those classes, how should you implement the compareTo() method to reflect the ordering that we want? 
+Nếu chọn thứ tự tự nhiên là theo Title (tăng dần), phương thức compareTo() trong lớp Media sẽ như sau:
+@Override
+public int compareTo(Media other) {
+    // Sắp xếp tự nhiên theo Title (không phân biệt hoa thường)
+    return this.getTitle().compareToIgnoreCase(other.getTitle());
+    // Có thể thêm so sánh theo Cost nếu Title giống nhau nếu muốn thứ tự tự nhiên phức tạp hơn
+    // int titleCompare = this.getTitle().compareToIgnoreCase(other.getTitle());
+    // if (titleCompare != 0) return titleCompare;
+    // return Float.compare(this.getCost(), other.getCost()); // So sánh cost tăng dần nếu title giống
+}
+
+Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+Không thể trực tiếp. Comparable chỉ định nghĩa một thứ tự sắp xếp tự nhiên duy nhất cho lớp đó thông qua phương thức compareTo(). Nếu muốn có nhiều quy tắc sắp xếp khác nhau, bắt buộc phải sử dụng Comparator.
+
+Suppose the DVDs have a different ordering rule... How would you modify your code to allow this? 
+Sử dụng Comparable sẽ rất phức tạp và không trực quan để xử lý quy tắc riêng cho DVD. Cách tốt nhất là sử dụng Comparator. Bạn sẽ tạo một Comparator<Media> mới, ví dụ DVDOrderComparator, trong phương thức compare của nó, bạn kiểm tra xem cả hai đối tượng m1 và m2 có phải là DigitalVideoDisc không. Nếu đúng, áp dụng quy tắc sắp xếp riêng cho DVD (title tăng dần, length giảm dần, cost giảm dần). Nếu không phải cả hai đều là DVD, bạn có thể quay lại dùng quy tắc sắp xếp mặc định (ví dụ, gọi COMPARE_BY_TITLE_COST.compare(m1, m2)) hoặc định nghĩa một quy tắc khác cho các trường hợp còn lại.

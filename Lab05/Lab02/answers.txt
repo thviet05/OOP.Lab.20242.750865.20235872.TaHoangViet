@@ -1,0 +1,31 @@
+Câu hỏi phần 9:
+Phương thức truy xuất (getter) nên được sử dụng khi cần lấy thông tin của một đối tượng để hiển thị ra bên ngoài.
+
+Câu hỏi phần 10:
+Không, Java sẽ không cho phép định nghĩa hai constructor như sau:
+
+public DigitalVideoDisc(String title) { ... }  // Constructor 1
+public DigitalVideoDisc(String category) { ... }  // Constructor 2
+Giải thích:
+Nguyên tắc nạp chồng constructor trong Java quy định rằng:
+
+Hệ thống xác định sự khác biệt giữa các constructor dựa vào số lượng và kiểu tham số.
+
+Tên tham số không phải là yếu tố giúp Java phân biệt giữa các constructor.
+
+Vấn đề xảy ra:
+Trong trường hợp này, cả hai constructor đều nhận một tham số kiểu String. Khi gọi:
+
+new DigitalVideoDisc("Animation");
+Trình biên dịch Java không thể xác định tham số "Animation" sẽ được gán cho thuộc tính title hay category, dẫn đến lỗi xung đột constructor.
+
+Câu hỏi phần 15:
+Trong Java, mọi giá trị truyền vào phương thức luôn theo cơ chế Pass by Value (truyền theo giá trị), kể cả khi làm việc với đối tượng.
+
+Giải thích:
+
+Đặc điểm	   Pass by Value	                                          Pass by Reference
+Bản chất	   Truyền một bản sao của giá trị gốc	                      Truyền địa chỉ trực tiếp đến vùng nhớ gốc
+Ảnh hưởng	   Thay đổi trong phương thức không ảnh hưởng biến ban đầu	Mọi thay đổi sẽ tác động trực tiếp đến biến gốc
+Mặc dù Java truyền đối tượng theo cơ chế pass by value, giá trị thực tế được truyền vào phương thức là tham chiếu đến đối tượng (tức là địa chỉ trong bộ nhớ). Tuy nhiên, chính tham chiếu này cũng được truyền dưới dạng bản sao, nên việc thay đổi tham chiếu trong phương thức không ảnh hưởng đến đối tượng gốc bên ngoài.
+
